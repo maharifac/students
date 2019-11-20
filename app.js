@@ -35,7 +35,7 @@ const updateRouter = require('./src/routes/updateRoutes')(nav);
 app.use('/viewAll', viewAllRouter);
 app.use('/search', searchRouter);
 app.use('/update', updateRouter);
-mongoose.connect("mongodb+srv://maharifac:upasana123@@cluster0-uatbl.mongodb.net/test?retryWrites=true&w=majority");
+mongoose.connect("mongodb+srv://maharifac:upasana123@cluster0-uatbl.mongodb.net/test?retryWrites=true&w=majority");
 
 //mongoose.connect("mongodb://localhost:27017/MyCollegeDb");
 
@@ -61,6 +61,6 @@ app.post('/save',(req, res) => {
     });
 
 
-app.listen(procee.env.PORT || 3500,() => {
+app.listen(process.env.PORT || 3500,() => {
     console.log('Listening to Port: ' + chalk.green('3500'));
 });
