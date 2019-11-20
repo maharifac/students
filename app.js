@@ -35,7 +35,9 @@ const updateRouter = require('./src/routes/updateRoutes')(nav);
 app.use('/viewAll', viewAllRouter);
 app.use('/search', searchRouter);
 app.use('/update', updateRouter);
-mongoose.connect("mongodb://localhost:27017/MyCollegeDb");
+mongoose.connect("mongodb+srv://maharifac:upasana123@@cluster0-uatbl.mongodb.net/test?retryWrites=true&w=majority");
+
+//mongoose.connect("mongodb://localhost:27017/MyCollegeDb");
 
 app.get('/', (req, res) => {
     res.render('index',
@@ -48,29 +50,18 @@ app.get('/', (req, res) => {
 app.route('/save')
     .post((req, res) => {
         var student = new studentModel(req.body);
-        student.save();
-        res.send(req.body);
+        student.save((error,data)=>{
+            if(error){
+                res.json({"Status":"Success"});
+                throw error;
+            }
+            else{
+                res.json({"Status":"Success"});
+            }
+        });
     });
 
 
-
-
-
-
-router.post('/search',(req,res)=>{                  //search
-    console.log(req.body)
-    studentModel.find(req.body, (error,data)=>{
-        if(error)
-        {
-            throw error;
-
-        }
-        else
-        {
-            res.send(data)
-        }
-    })
-})
-app.listen(3500, () => {
+app.listen(procee.env.PORT || 3500,() => {
     console.log('Listening to Port: ' + chalk.green('3500'));
 });

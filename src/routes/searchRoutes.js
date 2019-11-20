@@ -4,6 +4,20 @@ const searchRouter = express.Router();
 function router(nav){
     searchRouter.route('/')
         .get((req,res)=>{
+
+            
+            
+    router.post('/search',(req,res)=>{                  //search
+    console.log(req.body)
+    studentModel.find(req.body, (error,data)=>{
+        if(error)
+        {
+            throw error;
+
+        }
+        else
+        {
+            res.send(data)
             res.render(
                 'search',
                 {
@@ -11,7 +25,11 @@ function router(nav){
                     title:'Search Student'
                 }
             );
-        });
+        };
+        })
+    })
+})
+            
 
     searchRouter.route('/save')
         .post((req,res)=>{
