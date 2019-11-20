@@ -47,8 +47,7 @@ app.get('/', (req, res) => {
         });
 });
 
-app.route('/save')
-    .post((req, res) => {
+app.post('/save',(req, res) => {
         var student = new studentModel(req.body);
         student.save((error,data)=>{
             if(error){
